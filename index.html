@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Let's Play</h1>
+    <div class="players">
+    <div class="player1">
+    <img src="" alt="" class="img1">
+    <button class="btn-info">Player1</button>
+     </div>
+    <div class="player2">
+    <img src="" alt="" class="img2">
+    <button class="btn-danger">Player2</button>
+    </div>
+    </div>
+
+    <h1 class="winner"></h1>
+
+    <script>
+        let player1 = document.querySelector(".btn-info")
+        let player2 = document.querySelector(".btn-danger")
+        let image1 = document.querySelector('.img1')
+        let image2 = document.querySelector(".img2")
+        let winner = document.querySelector(".winner")
+        let voice = new Audio("./dice-142528.mp3")
+
+        let num1;
+        let num2;
+
+         const generateRandom = ()=>{
+
+            let random = Math.floor(Math.random() * 6)
+            return random + 1;
+             
+
+         }
+          
+       
+        player1.addEventListener("click",()=> {
+
+            num1 = generateRandom()
+            image1.src = `./faces/${num1}.png`
+            voice.play();
+
+        })
+
+        player2.addEventListener("click",()=> {
+
+        num2 = generateRandom()
+        voice.play();
+        image2.src = `./faces${num2}.png`
+       
+        if(num1 > num2){
+            winner.innerHTML = "Player 1 wins"
+        }
+        else if (num1 < num2){
+            winner.innerHTML = "Player 2 wins"
+
+        }else{
+            winner.innerHTML = "Match draw"
+        }
+
+       
+
+        })
+
+        
+    </script>
+</body>
+</html>
